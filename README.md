@@ -36,7 +36,45 @@ upc.json('0111222333446', function(response){
 ```
 _Output_
 ```javascript
-var x = 
+{ statusCode: 200,
+  serverError: false,
+  valid: true,
+  upc:
+   { number: '0111222333446',
+     itemname: 'UPC Database Testing Code',
+     alias: 'Testing Code',
+     description: 'http://upcdatabase.org/code/0111222333446',
+     avg_price: '123.45',
+     rate_up: '12',
+     rate_down: '2' 
+   } 
+}
+```
+
++ Or for XML
+```javascript
+upc.xml('0111222333446', function(resp){
+	if(!resp.serverError && resp.valid){
+		console.dir(resp);
+	} else if(!resp.serverError && !resp.valid){
+		console.log(resp.reason); 
+	} else {
+		console.log('server error');
+	}
+});
+```
+_Output_ 
+```
+ '<?xml version="1.0" encoding="ISO-8859-1"?>
+  <output xmlns="http://www.upcdatabase.org/">
+    <number>0111222333446</number>
+    <itemname>UPC Database Testing Code</itemname>
+    <alias>Testing Code</alias>
+    <description>http://upcdatabase.org/code/0111222333446</description>
+    <avgprice>123.45</avgprice>
+    <rate_up>12</rate_up>
+    <rate_down>2</rate_down>
+  </output>'
 ```
 
 ## API error codes 
