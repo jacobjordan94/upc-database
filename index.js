@@ -35,7 +35,6 @@ class UPC{
 			var resp = {};
 			resp.statusCode = response.statusCode;
 			if(!err && response.statusCode == 200){
-				console.log(body);
 				resp.serverError = false;
 				var $ = cheerio.load(body, {xmlMode: true}); 
 				resp.valid = $('valid').text() == 'true';
@@ -52,7 +51,7 @@ class UPC{
 			}
 		});
 	}
-	_makeRequest(format, callback){
+	_makeRequest(format, code, callback){
 		var url = this._buildQuery(code, format);
 		if(format == 'json'){
 			this._makeJSONRequest(url, callback);
@@ -61,10 +60,10 @@ class UPC{
 		}
 	}
 	json(code, callback){
-		this._makeRequest('json', callback);
+		this._makeRequest('json', code, callback);
 	}
 	xml(code, callback){
-		this._makeRequest('xml', callback);
+		this._makeRequest('xml', code, callback);
 	}
 }
 
