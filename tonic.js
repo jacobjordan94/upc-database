@@ -1,3 +1,5 @@
+// Switch node version to Node6
+
 var UPC = require('upc-database'); 
 var upc = new UPC('your key');
 
